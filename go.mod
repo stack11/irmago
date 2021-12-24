@@ -10,7 +10,6 @@ require (
 	github.com/certifi/gocertifi v0.0.0-20180118203423-deb3ae2ef261 // indirect
 	github.com/cockroachdb/apd v1.1.0 // indirect
 	github.com/eknkc/basex v1.0.0
-	github.com/fxamacker/cbor v1.5.0
 	github.com/getsentry/raven-go v0.0.0-20180121060056-563b81fc02b7
 	github.com/go-chi/chi v3.3.3+incompatible
 	github.com/go-chi/cors v1.0.0
@@ -30,7 +29,7 @@ require (
 	github.com/mdp/qrterminal v1.0.1
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b // indirect
 	github.com/mitchellh/mapstructure v1.1.2
-	github.com/privacybydesign/gabi v0.0.0-20210714094051-ba80a6a8c5d8
+	github.com/privacybydesign/gabi v0.0.0-20211225123233-2bdd16936727
 	github.com/shopspring/decimal v1.2.0 // indirect
 	github.com/sietseringers/go-sse v0.0.0-20200801161811-e2cf2c63ca50
 	github.com/sirupsen/logrus v1.4.2

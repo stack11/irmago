@@ -3,18 +3,18 @@ package irma
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/privacybydesign/irmago/internal/common"
+	"fmt"
 	"net/url"
 	"regexp"
 	"strconv"
 	"strings"
 
-	"fmt"
+	"github.com/privacybydesign/gabi"
+	"github.com/privacybydesign/gabi/cbor"
+	"github.com/privacybydesign/irmago/internal/common"
 
-	"github.com/fxamacker/cbor"
 	"github.com/go-errors/errors"
 	"github.com/golang-jwt/jwt/v4"
-	"github.com/privacybydesign/gabi"
 )
 
 // ClientStatus encodes the client status of an IRMA session (e.g., connected).
@@ -146,7 +146,7 @@ func UnmarshalValidateBinary(data []byte, dest interface{}) error {
 }
 
 func MarshalBinary(message interface{}) ([]byte, error) {
-	return cbor.Marshal(message, cbor.EncOptions{})
+	return cbor.Marshal(message)
 }
 
 func UnmarshalBinary(data []byte, dst interface{}) error {

@@ -6,7 +6,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/fxamacker/cbor"
+	"github.com/privacybydesign/gabi/cbor"
+
 	"github.com/go-errors/errors"
 	"github.com/jinzhu/gorm"
 )
@@ -18,7 +19,7 @@ func (oi *metaObjectIdentifier) UnmarshalCBOR(data []byte) error {
 }
 
 func (oi metaObjectIdentifier) MarshalCBOR() (data []byte, err error) {
-	return cbor.Marshal(string(oi), cbor.EncOptions{})
+	return cbor.Marshal(string(oi))
 }
 
 // RequestorSchemeIdentifier identifies a requestor scheme. Equal to its ID. For example "pbdf-requestors"
