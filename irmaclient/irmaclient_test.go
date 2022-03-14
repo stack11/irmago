@@ -1,6 +1,7 @@
 package irmaclient
 
 import (
+	"crypto/rand"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -42,10 +43,15 @@ func parseStorage(t *testing.T) (*Client, *TestClientHandler) {
 func parseExistingStorage(t *testing.T, storage string) (*Client, *TestClientHandler) {
 	handler := &TestClientHandler{t: t, c: make(chan error), storage: storage}
 	path := test.FindTestdataFolder(t)
+
+	aesKey := make([]byte, 32)
+	rand.Read(aesKey)
+
 	client, err := New(
 		filepath.Join(storage, "client"),
 		filepath.Join(path, "irma_configuration"),
 		handler,
+		aesKey,
 	)
 	require.NoError(t, err)
 	client.SetPreferences(Preferences{DeveloperMode: true})

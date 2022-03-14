@@ -1,6 +1,7 @@
 package sessiontest
 
 import (
+	"crypto/rand"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -35,10 +36,15 @@ func parseStorage(t *testing.T, opts ...option) (*irmaclient.Client, *TestClient
 func parseExistingStorage(t *testing.T, storage string, options ...option) (*irmaclient.Client, *TestClientHandler) {
 	handler := &TestClientHandler{t: t, c: make(chan error), storage: storage}
 	path := test.FindTestdataFolder(t)
+
+	aesKey := make([]byte, 32)
+	rand.Read(aesKey)
+
 	client, err := irmaclient.New(
 		filepath.Join(storage, "client"),
 		filepath.Join(path, "irma_configuration"),
 		handler,
+		aesKey,
 	)
 	require.NoError(t, err)
 
