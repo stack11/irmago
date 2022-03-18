@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"runtime"
+	"runtime/debug"
 
 	"github.com/go-errors/errors"
 	irma "github.com/privacybydesign/irmago"
@@ -22,9 +23,14 @@ var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Print irma version information",
 	Run: func(cmd *cobra.Command, args []string) {
+		var buildVersion string = "unknown"
+		if buildInfo, ok := debug.ReadBuildInfo(); ok {
+			buildVersion = buildInfo.Main.Version
+		}
 		fmt.Println(RootCmd.Long)
 		fmt.Println()
 		fmt.Println("Version: ", irma.Version)
+		fmt.Println("Build:   ", buildVersion)
 		fmt.Println("OS/Arg:  ", runtime.GOOS+"/"+runtime.GOARCH)
 	},
 }
